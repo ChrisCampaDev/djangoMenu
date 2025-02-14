@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}
+
+  {% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href= "{% static 'style/layout.css' %}" >
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <ul class="navbar_list">
+        <li class="navbar_item"><a class="link" href="#">Inicio</a></li>
+        <li class="navbar_item"><a class="link" href="#">Landing</a></li>
+        <li class="navbar_item"><a class="link" href="#">Sobre nosotros</a></li>
+        <li class="navbar_item"><a class="link" href="#">Menu</a></li>
+        <li class="navbar_item"><a class="link" href="#">Equipo de trabajo</a></li>
+        <li class="navbar_item"><a class="link" href="#">Contactanos</a></li>
+      </ul>
+    </nav>
+    <div class="caption">
+      <div class="bonus">
+        <h2 class="caption_text cicle">5% <br>Bonus de Recomendación</h2>
+      </div>
+      <h3 class="caption_text">Descubre nuevas ofertas gastronómicas y recibe descuentos por tu opinión.</h3>
+      <button class="btn caption_btn">Leer mas</button>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}
+
+    {% endblock %}
+  </main>
+
+  <footer>
+    <div class="contact">
+      <div class="btn_center">
+        <button class="btn btn_footer">Opine sobre nosotros</button>
+      </div>
+      <div class="contact_item">
+        <h3>Mantengase al dia con nosotros</h3>
+        <input class="search" type="search" placeholder="buscar">
+        <input class="btn" type="button" value="buscar">
+      </div>
+    </div>
+    <div class="info">
+      <div class="info_item">
+        <div class="info_img_container">
+          <img src="../static/icons/mail_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
+        </div>
+        <p class="info_text">Nuestro amable equipo esta aqui para ayudar</p>
+        <a class="info_link" href="#">info@gmail.com</a>
+      </div>
+      <div class="info_item">
+        <div class="info_img_container">
+          <img src="../static/icons/call_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
+        </div>
+        <p class="info_text">Lunes a Viernes de 8am a 4pm</p>
+        <a class="info_link" href="#">+5312345678</a>
+      </div>
+      <div class="info_item">
+        <div class="info_img_container">
+          <img src="../static/icons/share_location_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
+        </div>
+        <p class="info_text">Ven a saludar la sede de nuestra oficina</p>
+        <a class="info_link" href="#">Calle apagon, entre alumbron y Guiteras #12Horas</a>
+      </div>
+    </div>
+    <div class="copyright">
+      lorem@2025
+    </div>
+  </footer>
+</body>
+</html>
