@@ -215,7 +215,8 @@ body{
 }
 
 .menu_grid{
-  width: 90%;
+  background: #000;
+  width: 50%;
   margin: auto;
   text-align: center;
   display: grid;
