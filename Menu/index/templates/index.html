@@ -4,99 +4,175 @@
 {% endblock %}
 {% block content %}
   <div class="container">
-    <!-- Links Container -->
-    <div class="wrapper_links">
-        <a class="link_container" href="#">
-          <h2 class="link_text" >Establecimientos</h2>
-          <img class="link_img" src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="img_link"></a>
-        <a class="link_container" href="#">
-          <h2 class="link_text" >Desarrollo del Menú</h2>
-          <img class="link_img" src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="img_link"></a>
-        <a class="link_container" href="#">
-          <h2 class="link_text" >Descripciones y Opiniones</h2>
-          <img class="link_img" src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="img_link"></a>
-      </div>
 
-      <!-- Expensive Food -->
-      <div class="food expensive">
-        <div class="food_text">
-          <h3>27$</h3>
-          <h3>Titulo</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus ut libero cumque, error deleniti laudantium id! Repudiandae beatae id libero impedit porro nesciunt amet aperiam voluptates molestias cum! Illo?</p>
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+          <!-- Tarjeta 1 -->
+            <a href="#" class="relative flex-1 group overflow-hidden rounded-lg shadow-xl transition-transform duration-300 hover:scale-105">
+                <img src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg"
+                alt="Descripción 1"
+                class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="text-center text-white">
+                        <h3 class="text-xl font-bold mb-2">Restaurantes</h3>
+                    </div>
+                </div>
+            </a>
+
+          <!-- Tarjeta 2 -->
+            <a href="#" class="relative flex-1 group overflow-hidden rounded-lg shadow-xl transition-transform duration-300 hover:scale-105">
+                <img src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg"
+                alt="Descripción 2"
+                class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="text-center text-white">
+                        <h3 class="text-xl font-bold mb-2">Abastecimiento de Alimentos</h3>
+                    </div>
+                </div>
+            </a>
+
+          <!-- Tarjeta 3 -->
+            <a href="#" class="relative flex-1 group overflow-hidden rounded-lg shadow-xl transition-transform duration-300 hover:scale-105">
+                <img src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg"
+                alt="Descripción 3"
+                class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="text-center text-white">
+                        <h3 class="text-xl font-bold mb-2">Desarrollo de Menu</h3>
+                    </div>
+                </div>
+            </a>
         </div>
-        <img src="../../static/image/vecteezy_photorealistic-professional-food-commercial-photograph_30672792.jpg" alt="">
-      </div>
+    </div>
 
-      <!-- Carousel food -->
-      <div class="carousel">
+    <!-- Expensive Food -->
+    <div class="max-w-6xl mb-10 mx-auto p-4 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <!-- Imagen -->
+      <div class="w-full md:w-1/3">
+          <img class="rounded-xl w-full h-64 md:h-full object-cover" src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="Descripción de la imagen">
       </div>
+      <!-- Contenido -->
+      <div class="w-full md:w-2/3 p-6">
+          <!-- Precio-->
+          <div class="flex items-center justify-between">
+            <span class="text-xl font-bold text-gray-900">$99.99</span>
+          </div>
+          <h2 class="text-2xl font-bold mb-4">Mas Caro</h2>
+          <p class="text-gray-700 mb-4">
+              Este es un texto descriptivo que acompaña a la carta. Puedes agregar más detalles aquí, como una descripción del producto, servicio o cualquier otro contenido relevante.
+          </p>
+      </div>
+    </div>
 
-      <!-- Cheap food -->
-      <div class="food cheap">
-        <img rc="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="">
-        <div class="food_text">
-          <h3>4$</h3>
-          <h3>Titulo</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus ut libero cumque, error deleniti laudantium id! Repudiandae beatae id libero impedit porro nesciunt amet aperiam voluptates molestias cum! Illo?</p>
+    <!-- Carousel -->
+    <div class="relative overflow-hidden py-12" id="food">
+      <h2 class="text-3xl font-bold text-center mb-8">Nuestros Platos Principales </h2>
+      <div class="flex space-x-8 animate-infinite-scroll">
+          <!-- Imágenes del carousel -->
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 1" class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 2"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 3"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 4"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 5"  class="w-sm rounded-xl">
+          </div>
+          <!-- Repetir las imágenes para el efecto infinito -->
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 1"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 2"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+            <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 1"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+              <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 2"  class="w-sm rounded-xl">
+          </div>
+          <div class="flex-shrink-0">
+            <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 1"  class="w-sm rounded-xl">
         </div>
+        <div class="flex-shrink-0">
+            <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 2"  class="w-sm rounded-xl">
+        </div>
+        <div class="flex-shrink-0">
+          <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 1"  class="w-sm rounded-xl">
       </div>
+      <div class="flex-shrink-0">
+          <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 2"  class="w-sm rounded-xl">
+      </div>
+    </div>
   </div>
 
-  <!-- Restaurants menu -->
-  <h2 class="text_menus">Ver nuestros Menus</h2>
-  <div class="menu_grid">
-    <div class="menu_container">
-      <div class="menu_img">
-        <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
+    <!-- Cheap food -->
+    <div class="max-w-6xl mb-10 mx-auto p-4  rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <!-- Contenido -->
+      <div class="w-full md:w-2/3 p-6">
+          <!-- Precio-->
+          <div class="flex items-center justify-between">
+            <span class="text-xl font-bold text-gray-900">$9.99</span>
+          </div>
+          <h2 class="text-2xl font-bold mb-4">Mas Barato</h2>
+          <p class="text-gray-700 mb-4">
+              Este es un texto descriptivo que acompaña a la carta. Puedes agregar más detalles aquí, como una descripción del producto, servicio o cualquier otro contenido relevante.
+          </p>
       </div>
-      <div class="menu_footer">
-        <h3 class="title_menu">
+            <!-- Imagen -->
+        <div class="w-full md:w-1/3">
+          <img class="rounded-xl w-full h-64 md:h-full object-cover" src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="Descripción de la imagen">
+      </div>
+    </div>
+
+    <!-- Restaurants menu -->
+    <h2 class="text-3xl text-center font-bold mb-6" id="menu">Ver nuestros Menus</h2>
+    <div class="grid grid-cols-2 grid-rows-2 w-[80%] gap-4 m-auto">
+      <div class="m-2 text-center">
+      <img class="w-sm rounded-xl" src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
+        <h3 class="font-bold text-xl">
           Refrescos
         </h3>
-        <button class="btn btn_menu">
+        <button class="mt-8 pr-4 pl-4 pt-2 pb-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold">
           Ver mas
         </button>
       </div>
+      <div class="m-2 text-center">
+        <img class="w-sm rounded-xl" src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
+          <h3 class="font-bold text-xl">
+            Comida Criolla
+          </h3>
+          <button class="mt-8 pr-4 pl-4 pt-2 pb-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold ">
+            Ver mas
+          </button>
+        </div>
+        <div class="m-2 text-center">
+          <img class="w-sm rounded-xl" src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
+            <h3 class="font-bold text-xl">
+              Menus
+            </h3>
+            <button class="mt-8 pr-4 pl-4 pt-2 pb-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold ">
+              Ver mas
+            </button>
+          </div>
+          <div class="m-2 text-center">
+            <img class="w-sm rounded-xl" src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
+              <h3 class="font-bold text-xl">
+                Comida China
+              </h3>
+              <button class="mt-8 pr-4 pl-4 pt-2 pb-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold ">
+                Ver mas
+              </button>
+          </div>
     </div>
-    <div class="menu_container">
-      <div class="menu_img">
-        <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
-      </div>
-      <div class="menu_footer">
-        <h3 class="title_menu">
-          Comida China
-        </h3>
-        <button class="btn btn_menu">
-          Ver mas
-        </button>
-      </div>
-    </div>
-    <div class="menu_container">
-      <div class="menu_img">
-        <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
-      </div>
-      <div class="menu_footer">
-        <h3 class="title_menu">
-          Comida Criolla
-        </h3>
-        <button class="btn btn_menu">
-          Ver mas
-        </button>
-      </div>
-    </div>
-    <div class="menu_container">
-      <div class="menu_img">
-        <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="">
-      </div>
-      <div class="menu_footer">
-        <h3 class="title_menu">
-          Pizzas
-        </h3>
-        <button class="btn btn_menu">
-          Ver mas
-        </button>
-      </div>
-    </div>
+
+
   </div>
 
 {% endblock %}

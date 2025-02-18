@@ -208,6 +208,8 @@ body{
   font-size: 30px;
   margin-bottom: 5px;
 }
+
+/* Menus Styles */
 .text_menus{
   text-align: center;
   font-size: 30px;
@@ -215,7 +217,6 @@ body{
 }
 
 .menu_grid{
-  background: #000;
   width: 50%;
   margin: auto;
   text-align: center;
@@ -236,4 +237,37 @@ body{
 }
 .btn_menu{
   padding: 10px 20px
+}
+
+
+/* Carousel Styles */
+.carousel {
+    width: 80%;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    width: 200%;
+    animation: slide 20s linear infinite;
+}
+
+.carousel-item {
+    flex: 1 0 25%;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    display: block;
+}
+
+@keyframes slide {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-50%);
+  }
 }

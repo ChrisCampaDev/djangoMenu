@@ -1,0 +1,65 @@
+<!-- register.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-6 text-center">Registro</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Usuario</label>
+            {{ form.username }}
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Contraseña</label>
+            {{ form.password1 }}
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Confirmar Contraseña</label>
+            {{ form.password2 }}
+        </div>
+        <button type="submit" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300">
+            Registrarse
+        </button>
+    </form>
+    <div class="mt-4 text-center">
+        <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Ya tengo cuenta</a>
+    </div>
+</div>
+{% endblock %}<!-- register.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-6 text-center">Registro</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Usuario</label>
+            {{ form.username }}
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Contraseña</label>
+            {{ form.password1 }}
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Confirmar Contraseña</label>
+            {{ form.password2 }}
+        </div>
+        <button type="submit" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300">
+            Registrarse
+        </button>
+    </form>
+    <div class="mt-4 text-center">
+        <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Ya tengo cuenta</a>
+    </div>
+</div>
+{% endblock %}

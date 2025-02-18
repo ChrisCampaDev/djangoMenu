@@ -6,74 +6,133 @@
   <title>{% block title %}
 
   {% endblock %}</title>
+  {% comment %}
   {% load static %}
   <link rel="stylesheet" href= "{% static 'style/layout.css' %}" >
+  {% endcomment %}
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar">
-      <ul class="navbar_list">
-        <li class="navbar_item"><a class="link" href="#">Inicio</a></li>
-        <li class="navbar_item"><a class="link" href="#">Landing</a></li>
-        <li class="navbar_item"><a class="link" href="#">Sobre nosotros</a></li>
-        <li class="navbar_item"><a class="link" href="#">Menu</a></li>
-        <li class="navbar_item"><a class="link" href="#">Equipo de trabajo</a></li>
-        <li class="navbar_item"><a class="link" href="#">Contactanos</a></li>
-      </ul>
-    </nav>
-    <div class="caption">
-      <div class="bonus">
-        <h2 class="caption_text cicle">5% <br>Bonus de Recomendación</h2>
-      </div>
-      <h3 class="caption_text">Descubre nuevas ofertas gastronómicas y recibe descuentos por tu opinión.</h3>
-      <button class="btn caption_btn">Leer mas</button>
-    </div>
-  </header>
+  {% if user.is_authenticated %}
+    <header style="
+    background-image: url('../static/image/header-bg.jpg');
+    background-size: cover;
+    background-position: center;">
+      <nav class="relative h-96 flex items-center justify-center h-screen">
+          <div class="absolute inset-0 bg-black opacity-40"></div>
 
-  <main>
+          <div class="relative container mx-auto px-6 py-4">
+              <div class="flex items-center justify-between">
+                  <a href="/" class="text-2xl font-bold text-white hover:text-gray-300 transition duration-300">
+                      Home
+                  </a>
+                  <div class="hidden md:flex items-center space-x-8">
+                      <a href="/" class="text-white hover:text-gray-300 transition duration-300">Inicio</a>
+                      <a href="#menu" class="text-white hover:text-gray-300 transition duration-300">Menus</a>
+                      <a href="#food" class="text-white hover:text-gray-300 transition duration-300">Platos</a>
+                      <a href="#footer" class="text-white hover:text-gray-300 transition duration-300">Contacto</a>
+                      <p  class="text-white hover:text-gray-300 transition duration-300">Bienvenido, {{ user.username }}</p>
+                  </div>
+                  <!-- Botón móvil -->
+                  <button class="md:hidden text-white focus:outline-none">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                      </svg>
+                  </button>
+              </div>
+              <!-- Texto principal sobre la imagen -->
+              <div class="mt-24 text-center">
+                  <h1 class="rounded- text-white mb-4 border-2 border-green-800 rounded-[50%] w-[15%] bg-green-800 p-10 flex flex-col"><span class="font-bold text-xl">5%</span> Bonus de Recomendación</h1>
+                  <p class="text-4xl font-bold text-white text-start w-[30%]">Descubre nuevas ofertas gastronómicas y recibe descuentos por tu opinión.</p>
+                  <button class="mt-8 pr-4 pl-4 pt-2 pb-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold ">
+                    leer mas
+                  </button>
+              </div>
+          </div>
+      </nav>
+    </header>
+  {% endif %}
+
+<!--Aside menu -->
+  <div class="flex">
+    {% if user.is_authenticated and user.is_staff %}
+    <aside class="w-64 bg-gray-800 text-white p-4 ">
+        <h2 class="text-xl font-bold mb-4">Panel de Administración</h2>
+        <ul class="space-y-2">
+            <li>
+                <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Agregar Producto</a>
+            </li>
+            <li>
+                <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Usuarios</a>
+            </li>
+            <li>
+                <a href="{% url 'admin:logout' %}" class="block py-2 px-4 bg-red-500 hover:bg-red-600 rounded transition duration-300">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </aside>
+    {% endif %}
+
+  <main class="flex-1 ">
     {% block content %}
 
     {% endblock %}
   </main>
+  </div>
 
-  <footer>
-    <div class="contact">
-      <div class="btn_center">
-        <button class="btn btn_footer">Opine sobre nosotros</button>
-      </div>
-      <div class="contact_item">
-        <h3>Mantengase al dia con nosotros</h3>
-        <input class="search" type="search" placeholder="buscar">
-        <input class="btn" type="button" value="buscar">
+  {% if user.is_authenticated %}
+  <footer id="footer w-screen" style="
+  background-image: url('../static/image/header-bg.jpg');
+  background-size: cover;
+  background-position: center;">
+    <div class="flex flex-col items-center justify-center text-white py-8">
+        <button class="mt-8 px-4 py-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold ">Opine sobre nosotros</button>
+    </div>
+    <div class="flex flex-col justify-center ml-8 ">
+      <h3 class="font-bold text-3xl w-[25%] text-white shadow-black">Mantengase al dia con nosotros</h3>
+      <div class="flex h-10 mb-4">
+        <input class="px-4 py-2 w-[25%] mr-4 text-white border-2 rounded-xl" type="search" placeholder="buscar">
+        <input class="px-4 py-2 w-[10%] font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold" type="button" value="buscar">
       </div>
     </div>
-    <div class="info">
-      <div class="info_item">
-        <div class="info_img_container">
-          <img src="../static/icons/mail_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
-        </div>
-        <p class="info_text">Nuestro amable equipo esta aqui para ayudar</p>
-        <a class="info_link" href="#">info@gmail.com</a>
+
+    <div class="text-white grid grid-cols-3 gap-4 bg-gray-800 p-20">
+      <div class="flex justify-items-center flex-col text-center">
+        <img class="w-10 self-center" src="../static/icons/mail_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
+        <p>Nuestro amable equipo esta aqui para ayudar</p>
+        <a class="text-yellow-100" href="#">info@gmail.com</a>
       </div>
-      <div class="info_item">
-        <div class="info_img_container">
-          <img src="../static/icons/call_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
-        </div>
-        <p class="info_text">Lunes a Viernes de 8am a 4pm</p>
-        <a class="info_link" href="#">+5312345678</a>
+      <div class="flex justify-items-center flex-col text-center">
+        <img class="w-10 self-center" src="../static/icons/call_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
+        <p>Lunes a Viernes de 8am a 4pm</p>
+        <a class="text-yellow-100" href="#">+5312345678</a>
       </div>
-      <div class="info_item">
-        <div class="info_img_container">
-          <img src="../static/icons/share_location_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
-        </div>
-        <p class="info_text">Ven a saludar la sede de nuestra oficina</p>
-        <a class="info_link" href="#">Calle apagon, entre alumbron y Guiteras #12Horas</a>
+      <div class="flex justify-items-center flex-col text-center">
+        <img class="w-10 self-center" src="../static/icons/share_location_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
+        <p>Ven a saludar la sede de nuestra oficina</p>
+        <a class="text-yellow-100" href="#">Calle apagon, entre alumbron y Guiteras #12Horas</a>
       </div>
     </div>
-    <div class="copyright">
+    <div class="text-center bg-gray-900 text-white" >
       lorem@2025
     </div>
+
   </footer>
-  <script src=" {% static 'script/script.js' %} "></script>
+  {% endif %}
+  <style>
+    @keyframes infinite-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-infinite-scroll {
+        display: flex;
+        width: max-content;
+        animation: infinite-scroll 20s linear infinite;
+    }
+</style>
 </body>
 </html>
