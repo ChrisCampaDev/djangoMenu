@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="px-4 py-8">
-        <h1 class="text-3xl font-bold text-center mb-8">Lista de Productos</h1>
+        <h1 class="text-3xl font-bold text-center mb-8" >Lista de Productos</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
             {% for producto in productos %}
@@ -28,7 +28,7 @@
     <div class="my-8 flex justify-center">
         <nav class="inline-flex rounded-md shadow">
             {% if productos.has_previous %}
-            <a href="?page={{ productos.previous_page_number }}" class="px-4 py-2 bg-blue-500 text-white rounded-l-lg hover:bg-blue-600">
+            <a href="?page={{ productos.previous_page_number }}" class="px-4 py-2 bg-green-700 text-white rounded-l-lg hover:bg-green-900">
                 Anterior
             </a>
             {% endif %}
@@ -36,7 +36,7 @@
                 Página {{ productos.number }} de {{ productos.paginator.num_pages }}
             </span>
             {% if productos.has_next %}
-            <a href="?page={{ productos.next_page_number }}" class="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+            <a href="?page={{ productos.next_page_number }}" class="px-4 py-2 bg-green-700 text-white rounded-r-lg hover:bg-green-900">
                 Siguiente
             </a>
             {% endif %}

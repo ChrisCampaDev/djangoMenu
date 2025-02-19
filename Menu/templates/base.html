@@ -27,8 +27,8 @@
                       <a href="#menu" class="text-white hover:text-gray-300 transition duration-300">Menus</a>
                       <a href="#food" class="text-white hover:text-gray-300 transition duration-300">Platos</a>
                       <a href="#footer" class="text-white hover:text-gray-300 transition duration-300">Contacto</a>
-                      <a href="{% url 'menu_food' %}" class="text-white hover:text-gray-300 transition duration-300">Productos</a>
-                      <p  class="text-white hover:text-gray-300 transition duration-300">Bienvenido, {{ user.username }}</p>
+                      <a href="{% url 'menu_food' %}" class="text-white hover:text-gray-300 transition duration-300"  >Productos</a>
+                      <p  class="text-white hover:text-gray-300 transition duration-300">Bienvenido:{{ user.username }}, quieres <a href="{% url 'logout' %}" class="text-red-500 hover:text-red-200 transition duration-300" >Cerrar sesion</a></p>
                   </div>
                   <!-- Botón móvil -->
                   <button class="md:hidden text-white focus:outline-none">
@@ -53,7 +53,7 @@
 <!--Aside menu -->
   <div class="flex">
     {% if user.is_authenticated and user.is_staff %}
-      <aside class="w-m-3xs flex-1 bg-gray-800 text-white p-4">
+      <aside class="w-3xs bg-gray-800 text-white p-4">
           <h2 class="text-xl font-bold mb-4">Panel de Administración</h2>
           <ul class="space-y-2">
               <li>
@@ -72,7 +72,7 @@
       </aside>
     {% endif %}
 
-    <main class="w-[85%] flex-1 ">
+    <main class="w-[80%] flex-1 ">
       {% block content %}
 
       {% endblock %}
