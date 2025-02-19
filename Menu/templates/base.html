@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
                       <a href="/" class="text-white hover:text-gray-300 transition duration-300">Inicio</a>
                       <a href="#menu" class="text-white hover:text-gray-300 transition duration-300">Menus</a>
                       <a href="#food" class="text-white hover:text-gray-300 transition duration-300">Platos</a>
-                      <a href="#footer" class="text-white hover:text-gray-300 transition duration-300">Contacto</a>
+                      <a href="#contacto" class="text-white hover:text-gray-300 transition duration-300">Contacto</a>
                       <a href="{% url 'menu_food' %}" class="text-white hover:text-gray-300 transition duration-300"  >Productos</a>
                       <p  class="text-white hover:text-gray-300 transition duration-300">Bienvenido:{{ user.username }}, quieres <a href="{% url 'logout' %}" class="text-red-500 hover:text-red-200 transition duration-300" >Cerrar sesion</a></p>
                   </div>
@@ -80,7 +80,7 @@
   </div>
 
   {% if user.is_authenticated  %}
-  <footer id="footer w-screen" style="
+  <footer class="mt-8" style="
   background-image: url('../static/image/header-bg.jpg');
   background-size: cover;
   background-position: center;">
@@ -88,14 +88,14 @@
         <button class="mt-8 px-4 py-2 font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold ">Opine sobre nosotros</button>
     </div>
     <div class="flex flex-col justify-center ml-8 ">
-      <h3 class="font-bold text-3xl w-[25%] text-white shadow-black">Mantengase al dia con nosotros</h3>
-      <div class="flex h-10 mb-4">
+      <h3 class="font-bold text-3xl w-[25%] text-white shadow-black mb-8">Mantengase al dia con nosotros</h3>
+      <div class="flex h-10 mb-8">
         <input class="px-4 py-2 w-[25%] mr-4 text-white border-2 rounded-xl" type="search" placeholder="buscar">
         <input class="px-4 py-2 w-[10%] font-bold border-2 border-transparent bg-green-800 hover:bg-bg-green-900 hover:text-white rounded-3xl fond-bold" type="button" value="buscar">
       </div>
     </div>
 
-    <div class="text-white grid grid-cols-3 gap-4 bg-gray-800 p-20">
+    <div class="text-white grid grid-cols-3 gap-4 bg-gray-800 p-20" id="contacto">
       <div class="flex justify-items-center flex-col text-center">
         <img class="w-10 self-center" src="../static/icons/mail_28dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="icono">
         <p>Nuestro amable equipo esta aqui para ayudar</p>
