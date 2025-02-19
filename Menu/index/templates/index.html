@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
-  Web Menu
+  Web
 {% endblock %}
 {% block content %}
-  <div class="container">
+    <div class="container">
 
-    <div class="container mx-auto px-4 py-8">
+      <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
           <!-- Tarjeta 1 -->
             <a href="#" class="relative flex-1 group overflow-hidden rounded-lg shadow-xl transition-transform duration-300 hover:scale-105">
@@ -43,10 +43,10 @@
                 </div>
             </a>
         </div>
-    </div>
+      </div>
 
-    <!-- Expensive Food -->
-    <div class="max-w-6xl mb-10 mx-auto p-4 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <!-- Expensive Food -->
+      <div class="max-w-6xl mb-10 mx-auto p-4 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
       <!-- Imagen -->
       <div class="w-full md:w-1/3">
           <img class="rounded-xl w-full h-64 md:h-full object-cover" src="../../static/image/vecteezy_mouthwatering-images-of-gourmet-dishes_29895510.jpg" alt="Descripción de la imagen">
@@ -62,10 +62,10 @@
               Este es un texto descriptivo que acompaña a la carta. Puedes agregar más detalles aquí, como una descripción del producto, servicio o cualquier otro contenido relevante.
           </p>
       </div>
-    </div>
+      </div>
 
-    <!-- Carousel -->
-    <div class="relative overflow-hidden py-12" id="food">
+      <!-- Carousel -->
+      <div class="relative overflow-hidden py-12" id="food">
       <h2 class="text-3xl font-bold text-center mb-8">Nuestros Platos Principales </h2>
       <div class="flex space-x-8 animate-infinite-scroll">
           <!-- Imágenes del carousel -->
@@ -106,8 +106,8 @@
         <div class="flex-shrink-0">
           <img src="../../static/image/chris-ralston-09HGdZzkP-Q-unsplash.jpg" alt="Patrocinador 1"  class="w-sm rounded-xl">
       </div>
+      </div>
     </div>
-  </div>
 
     <!-- Cheap food -->
     <div class="max-w-6xl mb-10 mx-auto p-4  rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
@@ -168,8 +168,5 @@
               </button>
           </div>
     </div>
-
-
-  </div>
 
 {% endblock %}
