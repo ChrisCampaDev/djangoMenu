@@ -14,13 +14,13 @@ class UserCreateView(LoginRequiredMixin, CreateView):
     model = User
     form_class = UserForm
     template_name = 'users/form.html'
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('user_list')
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'users/form.html'
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('user_list')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

@@ -1,11 +1,19 @@
 from django.db import models
 
-# Create your models here.
 class Producto(models.Model):
+    TYPE_CHOICES = [
+        ('Lácteo', 'Lácteo'),
+        ('Fruta', 'Fruta'),
+        ('Verdura', 'Verdura'),
+        ('Carne', 'Carne'),
+        ('Bebida', 'Bebida'),
+        ('Otro', 'Otro'),
+    ]
+
     nombre = models.CharField(max_length=100)
-    gramaje = models.PositiveIntegerField(help_text="mililitros")
-    descripcion = models.TextField()
-    creado = models.DateTimeField(auto_now_add=True)
+    gramaje = models.PositiveIntegerField(help_text="Peso en gramos")
+    descripcion = models.TextField(blank=True, null=True)
+    tipo = models.CharField(max_length=50, choices=TYPE_CHOICES, default='Otro')
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre} ({self.tipo})"

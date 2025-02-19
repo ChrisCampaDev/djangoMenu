@@ -56,11 +56,11 @@
 <!--Aside menu -->
   <div class="flex">
     {% if user.is_authenticated and user.is_staff %}
-    <aside class="w-64 bg-gray-800 text-white p-4 ">
+    <aside class="w-[15%] flex-1 bg-gray-800 text-white p-4">
         <h2 class="text-xl font-bold mb-4">Panel de Administración</h2>
         <ul class="space-y-2">
             <li>
-                <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Agregar Producto</a>
+                <a href="{% url 'product_list' %}" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Agregar Producto</a>
             </li>
             <li>
                 <a href="{% url 'user_list' %}" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Usuarios</a>
@@ -75,14 +75,14 @@
     </aside>
     {% endif %}
 
-  <main class="flex-1 ">
-    {% block content %}
+    <main class="w-[85%] flex-1 ">
+      {% block content %}
 
-    {% endblock %}
-  </main>
+      {% endblock %}
+    </main>
   </div>
 
-  {% if user.is_authenticated %}
+  {% if user.is_authenticated  %}
   <footer id="footer w-screen" style="
   background-image: url('../static/image/header-bg.jpg');
   background-size: cover;
