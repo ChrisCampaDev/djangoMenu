@@ -6,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 #from django.contrib.auth import login, authenticate, logout
 #from django.shortcuts import redirect, render
 
-
 class HomeView(LoginRequiredMixin,TemplateView):
     template_name = 'index.html'
     login_url = 'login'
