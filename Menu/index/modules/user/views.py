@@ -9,6 +9,7 @@ class UserListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'users/list.html'
     context_object_name = 'users'
+    paginate_by = 8
 
 class UserCreateView(LoginRequiredMixin, CreateView):
     model = User

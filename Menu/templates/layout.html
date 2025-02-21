@@ -6,10 +6,6 @@
   <title>{% block title %}
     Gestion de Usuarios
   {% endblock %}</title>
-  {% comment %}
-  {% load static %}
-  <link rel="stylesheet" href= "{% static 'style/layout.css' %}" >
-  {% endcomment %}
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body>
@@ -17,16 +13,18 @@
   <div class="flex">
     {% if user.is_authenticated and user.is_staff %}
     <aside class="w-64 h-screen bg-gray-800 text-white p-4 ">
-        <h2 class="text-xl font-bold mb-4">Panel de Administración</h2>
         <ul class="space-y-2">
-          <li>
+        <li>
+            <a href="{% url 'admin' %}" class="block text-xl font-bold py-2 px-4 rounded ">Panel de Administracion</a>
+        </li>
+        <li>
+          <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Inicio</a>
+        </li>
+        <li>
             <a href="{% url 'product_list' %}" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Agregar Producto</a>
         </li>
         <li>
             <a href="{% url 'user_list' %}" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Usuarios</a>
-        </li>
-        <li>
-          <a href="{% url 'home' %}" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300">Inicio</a>
         </li>
         <li>
             <a href="{% url 'logout' %}" class="block py-2 px-4 bg-red-500 hover:bg-red-600 rounded transition duration-300">Cerrar Sesión</a>
@@ -35,11 +33,12 @@
     </aside>
     {% endif %}
 
-  <main class="flex-1 ">
+    <main class="flex-1 bg-gray-300 w ">
     {% block content %}
 
     {% endblock %}
   </main>
   </div>
+
 </body>
 </html>
