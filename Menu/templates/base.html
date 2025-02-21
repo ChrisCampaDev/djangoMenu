@@ -10,13 +10,17 @@
 </head>
 <body>
 
-    <header style="
-    background-image: url('../static/image/header-bg.jpg');
-    background-size: cover;
-    background-position: center;">
-      <nav class="relative h-96 flex items-center justify-center h-screen">
+    <header
+    {% if request.path == '/'  %}
+    class="bg-[url('../static/image/header-bg.jpg')] bg-cover bg-center"
+    {% else %}
+    class="bg-gray-900 h-20"
+    {% endif %}
+    >
+      <nav class="relative h-96flex items-center justify-center h-screen">
+        {% if request.path == '/' %}
           <div class="absolute inset-0 bg-black opacity-40"></div>
-
+        {% endif %}
           <div class="relative container mx-auto px-6 py-4">
               <div class="flex items-center justify-between">
                   <a href="/" class="text-2xl font-bold text-white hover:text-gray-300 transition duration-300">
@@ -24,8 +28,8 @@
                   </a>
                   <div class="hidden md:flex items-center space-x-8">
                         <a href="/" class="text-white hover:text-gray-300 transition duration-300">Inicio</a>
-                        <a href="#menu" class="text-white hover:text-gray-300 transition duration-300">Menus</a>
-                        <a href="#food" class="text-white hover:text-gray-300 transition duration-300">Platos</a>
+                        <a href="/#menu" class="text-white hover:text-gray-300 transition duration-300">Menus</a>
+                        <a href="/#food" class="text-white hover:text-gray-300 transition duration-300">Platos</a>
                         <a href="#contacto" class="text-white hover:text-gray-300 transition duration-300">Contacto</a>
                         <a href="{% url 'menu_food' %}" class="text-white hover:text-gray-300 transition duration-300">Productos</a>
                       {% if user.is_authenticated and user.is_staff %}
@@ -51,6 +55,7 @@
                       </svg>
                   </button>
               </div>
+              {% if request.path == '/'  %}
               <!-- Texto principal sobre la imagen -->
               <div class="mt-24 text-center">
                   <h1 class="rounded- text-white mb-4 border-2 border-green-800 rounded-[50%] w-[15%] bg-green-800 p-10 flex flex-col"><span class="font-bold text-xl">5%</span> Bonus de Recomendación</h1>
@@ -59,6 +64,7 @@
                     leer mas
                   </button>
               </div>
+              {% endif %}
           </div>
       </nav>
     </header>
@@ -123,6 +129,7 @@
               </button>
         </div>
       </div>
+
     </div>
   <footer class="mt-8" style="
   background-image: url('../static/image/header-bg.jpg');

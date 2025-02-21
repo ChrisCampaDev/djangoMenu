@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from Menu.index.form import ComentarioForm
+from .form import ComentarioForm
 from index.modules.products.models import Producto
 from django.contrib.auth.models import User
 
@@ -19,40 +19,31 @@ from django.shortcuts import render, get_object_or_404, redirect
 class HomeView(TemplateView):
     template_name = 'index.html'
 
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+        return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'registration/login.html')
+
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            if user.is_staff:
-                return redirect('admin')
-            else:
-                return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+            return redirect('home')
+        return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'registration/register.html')
 
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                if user.is_staff:
-                    return redirect('admin')
-                else:
-                    return redirect('home')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)  # Solo para usuarios administradores
 def admin_dashboard(request):
+    # Filtros para usuarios
     query_usuario = request.GET.get('q_usuario', '')
     usuarios = User.objects.all()
     if query_usuario:
@@ -60,7 +51,6 @@ def admin_dashboard(request):
             Q(username__icontains=query_usuario) |
             Q(email__icontains=query_usuario)
         )
-
     # Filtros para productos
     query_producto = request.GET.get('q_producto', '')
     tipo_producto = request.GET.get('tipo_producto', '')
@@ -70,16 +60,18 @@ def admin_dashboard(request):
     if tipo_producto:
         productos = productos.filter(tipo=tipo_producto)
 
+    # Estadísticas
     total_usuarios = User.objects.count()
     total_productos = Producto.objects.count()
-    ultimos_usuarios = User.objects.order_by('-date_joined')[:5]
-    ultimos_productos = Producto.objects.order_by('-id')[:5]
 
     context = {
         'total_usuarios': total_usuarios,
         'total_productos': total_productos,
-        'ultimos_usuarios': ultimos_usuarios,
-        'ultimos_productos': ultimos_productos,
+        'usuarios': usuarios,
+        'productos': productos,
+        'query_usuario': query_usuario,
+        'query_producto': query_producto,
+        'tipo_producto': tipo_producto,
     }
     return render(request, 'admin.html', context)
 
@@ -105,7 +97,7 @@ def detalle_producto(request, producto_id):
             comentario.producto = producto
             comentario.usuario = request.user
             comentario.save()
-            return redirect('comment', producto_id=producto.id)
+            return redirect('detalle_producto', producto_id=producto.id)
     else:
         form = ComentarioForm()
 
@@ -114,4 +106,4 @@ def detalle_producto(request, producto_id):
         'comentarios': comentarios,
         'form': form,
     }
-    return render(request, 'productos/comment.html', context)
+    return render(request, 'detalle_producto.html', context)

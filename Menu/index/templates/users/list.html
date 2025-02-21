@@ -1,17 +1,7 @@
 
 {% extends 'layout.html' %}
 {% block content %}
-
-    <h2 class="text-2xl font-bold mb-4">Filtrar Usuarios</h2>
-    <form method="get" class="mx-4">
-        <input type="text" name="q_usuario" value="{{ query_usuario }}" placeholder="Buscar usuario..."
-        class="w-full md:w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ">
-        <button type="submit" class="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-            Buscar
-        </button>
-    </form>
-
-    <div class="flex-1 container mx-auto px-4 py-8">
+    <div class="h-screen flex-1 container mx-auto px-4 py-8">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold">Gestión de Usuarios</h1>
             <a href="{% url 'user_create' %}" class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-900">
@@ -21,7 +11,7 @@
 
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <table class="min-w-full">
-                <thead class="bg-gray-100">
+                <thead class="bg-gray-100 h-[100]">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuario</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
@@ -56,25 +46,24 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Controles de paginación -->
+        <div class="text-center">
+            <span class="">
+            {% if page_obj.has_previous %}
+                <a class="p-2 border-none bg-green-600 rounded-xl text-white" href="?page=1">&laquo; primera</a>
+                <a class="p-2 border-none bg-green-700 rounded-xl text-white" href="?page={{ page_obj.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="font-bold text-green-600">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="p-2 border-none bg-green-600 rounded-xl text-white" href="?page={{ page_obj.next_page_number }}">siguiente</a>
+                <a class="p-2 border-none bg-green-700 rounded-xl text-white" href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+            </span>
+        </div>
     </div>
-
-
-<!-- Controles de paginación -->
-<div class="text-center">
-    <span class="">
-        {% if page_obj.has_previous %}
-            <a class="p-2 border-none bg-green-600 rounded-xl text-white" href="?page=1">&laquo; primera</a>
-            <a class="p-2 border-none bg-green-700 rounded-xl text-white" href="?page={{ page_obj.previous_page_number }}">anterior</a>
-        {% endif %}
-
-        <span class="font-bold text-green-600">
-            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a class="p-2 border-none bg-green-600 rounded-xl text-white" href="?page={{ page_obj.next_page_number }}">siguiente</a>
-            <a class="p-2 border-none bg-green-700 rounded-xl text-white" href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
-        {% endif %}
-    </span>
-</div>
 {% endblock %}

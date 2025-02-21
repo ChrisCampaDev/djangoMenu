@@ -14,6 +14,7 @@ class Producto(models.Model):
     gramaje = models.PositiveIntegerField(help_text="Peso en gramos")
     descripcion = models.TextField(blank=True, null=True)
     tipo = models.CharField(max_length=50, choices=TYPE_CHOICES, default='Otro')
+    imagen_producto = models.ImageField(upload_to='producto/', blank=True, null=True, default='')
 
     def __str__(self):
         return f"{self.nombre} ({self.tipo})"

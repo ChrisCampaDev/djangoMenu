@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from modules.products.models import Producto
+from .modules.products.models import Producto
 
 class Comentario(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='comentarios')

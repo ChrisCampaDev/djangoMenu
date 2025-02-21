@@ -12,7 +12,7 @@
 <!--Aside menu -->
   <div class="flex">
     {% if user.is_authenticated and user.is_staff %}
-    <aside class="w-64 h-screen bg-gray-800 text-white p-4 ">
+    <aside class="w-64 h-[100] bg-gray-800 text-white p-4 ">
         <ul class="space-y-2">
         <li>
             <a href="{% url 'admin' %}" class="block text-xl font-bold py-2 px-4 rounded ">Panel de Administracion</a>
@@ -33,7 +33,7 @@
     </aside>
     {% endif %}
 
-    <main class="flex-1 bg-gray-300 w ">
+    <main class="flex-1 bg-gray-300">
     {% block content %}
 
     {% endblock %}

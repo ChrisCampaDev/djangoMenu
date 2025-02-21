@@ -13,14 +13,6 @@ class ProductoListView(ListView,PermissionRequiredMixin,LoginRequiredMixin):
     context_object_name = 'products'
     paginate_by = 8
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        categoria = self.request.GET.get('tipo')
-        if categoria:
-            queryset = queryset.filter(categoria=categoria)
-
-        return queryset
-
 class ProductoCreateView(CreateView,LoginRequiredMixin):
     model = Producto
     form_class = ProductoForm
