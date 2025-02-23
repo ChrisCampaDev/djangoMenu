@@ -1,0 +1,89 @@
+<!-- producto_form.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">
+        {% if object %}Editar Producto{% else %}Nuevo Producto{% endif %}
+    </h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Campos del formulario -->
+        <div class="grid grid-cols-1 gap-4">
+            <!-- Campo de imagen -->
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Imagen del producto</label>
+                <div class="relative border-2 border-dashed rounded-lg p-6 text-center">
+                    {% if form.imagen.value %}
+                        <img id="previewImagen" src="{{ form.imagen.value.url }}"
+                            class="max-h-48 mx-auto mb-4 rounded-lg">
+                    {% else %}
+                        <div id="previewImagen" class="hidden"></div>
+                    {% endif %}
+                    <input type="file" name="imagen" accept="image/*"
+                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            id="imagenInput">
+                    <div class="text-gray-500">
+                        <p>Haz clic para subir una imagen</p>
+                        <p class="text-sm">(Formatos: JPG, PNG, GIF. Máx. 5MB)</p>
+                    </div>
+                </div>
+                {{ form.imagen.errors }}
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Nombre</label>
+                {{ form.nombre }}
+                {{ form.nombre.errors }}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Gramaje (g)</label>
+                {{ form.gramaje }}
+                {{ form.gramaje.errors }}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Tipo</label>
+                {{ form.tipo }}
+                {{ form.tipo.errors }}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Descripción</label>
+                {{ form.descripcion }}
+                {{ form.descripcion.errors }}
+            </div>
+        </div>
+
+        <div class="mt-6 flex justify-end space-x-4">
+            <a href="{% url 'product_list' %}"
+                class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400">
+                Cancelar
+            </a>
+            <button type="submit"
+                    class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-900">
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>
+
+    <script>
+        document.getElementById('imagenInput').addEventListener('change', function(e) {
+            const preview = document.getElementById('previewImagen');
+            const file = e.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}"
+                                            class="max-h-48 mx-auto mb-4 rounded-lg">`;
+                    preview.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+{% endblock %}
