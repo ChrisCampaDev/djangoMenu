@@ -18,3 +18,7 @@ class Producto(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.tipo})"
+
+    @classmethod
+    def get_type_choices(cls):
+        return cls.TYPE_CHOICES

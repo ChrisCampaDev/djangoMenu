@@ -1,69 +1,133 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="h-screen flex-1 container mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Gestión de Usuarios</h1>
+    <a
+      href="{% url 'user_create' %}"
+      class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-900"
+    >
+      Nuevo Usuario
+    </a>
+  </div>
+  <form method="get" class="mb-4">
+    <input
+      type="text"
+      name="q"
+      value="{{ q }}"
+      placeholder="Buscar usuario..."
+      class="w-full md:w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button
+      type="submit"
+      class="mt-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-900"
+    >
+      Buscar
+    </button>
+  </form>
 
-{% extends 'layout.html' %}
-{% block content %}
-    <div class="h-screen flex-1 container mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Gestión de Usuarios</h1>
-            <a href="{% url 'user_create' %}" class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-900">
-                Nuevo Usuario
-            </a>
-        </div>
-
-        <div class="bg-white rounded-lg shadow overflow-hidden">
-            <table class="min-w-full">
-                <thead class="bg-gray-100 h-[100]">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuario</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                    {% for user in users %}
-                    <tr>
-                        <td class="px-6 py-4">{{ user.username }}</td>
-                        <td class="px-6 py-4">{{ user.get_full_name }}</td>
-                        <td class="px-6 py-4">{{ user.email }}</td>
-                        <td class="px-6 py-4">
-                            {% if user.is_staff %}
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Admin
-                            </span>
-                            {% else %}
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                Usuario
-                            </span>
-                            {% endif %}
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="{% url 'user_update' user.id %}" class="text-blue-500 hover:text-blue-700 mr-4">Editar</a>
-                            <a href="{% url 'user_delete' user.id %}" class="text-red-500 hover:text-red-700">Eliminar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Controles de paginación -->
-        <div class="text-center">
-            <span class="">
-            {% if page_obj.has_previous %}
-                <a class="p-2 border-none bg-green-600 rounded-xl text-white" href="?page=1">&laquo; primera</a>
-                <a class="p-2 border-none bg-green-700 rounded-xl text-white" href="?page={{ page_obj.previous_page_number }}">anterior</a>
-            {% endif %}
-
-            <span class="font-bold text-green-600">
-                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+  <div class="bg-white rounded-lg shadow overflow-hidden">
+    <table class="min-w-full">
+      <thead class="bg-gray-100 h-[100]">
+        <tr>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Usuario
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Nombre
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Email
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Rol
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        {% for user in users %}
+        <tr>
+          <td class="px-6 py-4">{{ user.username }}</td>
+          <td class="px-6 py-4">{{ user.get_full_name }}</td>
+          <td class="px-6 py-4">{{ user.email }}</td>
+          <td class="px-6 py-4">
+            {% if user.is_staff %}
+            <span
+              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+            >
+              Admin
             </span>
-
-            {% if page_obj.has_next %}
-                <a class="p-2 border-none bg-green-600 rounded-xl text-white" href="?page={{ page_obj.next_page_number }}">siguiente</a>
-                <a class="p-2 border-none bg-green-700 rounded-xl text-white" href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
-            {% endif %}
+            {% else %}
+            <span
+              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800"
+            >
+              Usuario
             </span>
-        </div>
-    </div>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4">
+            <a
+              href="{% url 'user_update' user.id %}"
+              class="text-blue-500 hover:text-blue-700 mr-4"
+              >Editar</a
+            >
+            <a
+              href="{% url 'user_delete' user.id %}"
+              class="text-red-500 hover:text-red-700"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Controles de paginación -->
+  <div class="text-center">
+    <span class="">
+      {% if page_obj.has_previous %}
+      <a
+        class="p-2 border-none bg-green-600 rounded-xl text-white"
+        href="?page=1"
+        >&laquo; primera</a
+      >
+      <a
+        class="p-2 border-none bg-green-700 rounded-xl text-white"
+        href="?page={{ page_obj.previous_page_number }}"
+        >anterior</a
+      >
+      {% endif %}
+
+      <span class="font-bold text-green-600">
+        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+      <a
+        class="p-2 border-none bg-green-600 rounded-xl text-white"
+        href="?page={{ page_obj.next_page_number }}"
+        >siguiente</a
+      >
+      <a
+        class="p-2 border-none bg-green-700 rounded-xl text-white"
+        href="?page={{ page_obj.paginator.num_pages }}"
+        >última &raquo;</a
+      >
+      {% endif %}
+    </span>
+  </div>
+</div>
 {% endblock %}

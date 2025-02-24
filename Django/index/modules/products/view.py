@@ -8,13 +8,36 @@ from django.urls import reverse_lazy
 #from Menu.utils.utils import update_paginate
 from .models import Producto
 from .form import ProductoForm
+from django.db.models import Q
 
 
 class ProductoListView(ListView,PermissionRequiredMixin,LoginRequiredMixin):
     model = Producto
     template_name = 'product/list.html'
     context_object_name = 'products'
-    paginate_by = 8
+    paginate_by = 10
+
+    def get_queryset(self):
+        listado = super().get_queryset()
+        query = self.request.GET.get("q", "")
+        tipo_filter = self.request.GET.get("tipo_filter", "")
+
+        if tipo_filter:
+            listado = listado.filter(tipo=tipo_filter)
+
+        if query:
+            listado = listado.filter(
+                Q(nombre=query)|
+                Q(tipo=query)
+            )
+        return listado
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get("q", "")
+        context['tipos_productos'] = Producto.get_type_choices()
+        return context
+
 
 class ProductoCreateView(CreateView,LoginRequiredMixin,SuccessMessageMixin):
     model = Producto

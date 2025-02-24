@@ -4,12 +4,27 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserForm
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 class UserListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'users/list.html'
     context_object_name = 'users'
     paginate_by = 8
+
+    def get_queryset(self):
+        listado = super().get_queryset()
+        query = self.request.GET.get("q", "")
+        if query:
+            listado = listado.filter(
+                Q(username=query)
+            )
+        return listado
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get("q", "")
+        return context
 
 class UserCreateView(LoginRequiredMixin, CreateView):
     model = User

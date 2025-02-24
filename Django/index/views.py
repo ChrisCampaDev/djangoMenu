@@ -40,6 +40,7 @@ def register_view(request):
 @login_required
 @user_passes_test(lambda u: u.is_staff)
 def admin_dashboard(request):
+
     # Filtros para usuarios
     query_usuario = request.GET.get('q_usuario', '')
     usuarios = User.objects.all()
